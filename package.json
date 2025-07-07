@@ -1,0 +1,20 @@
+{
+  "name": "music-streaming-backend",
+  "version": "1.0.0",
+  "description": "A Spotify-like music streaming backend built with Node.js, Express, and SQLite.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express-rate-limit": "^7.5.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "sqlite3": "^5.1.7"
+  }
+}

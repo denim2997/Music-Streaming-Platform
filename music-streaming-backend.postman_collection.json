@@ -1,0 +1,116 @@
+{
+  "info": {
+    "_postman_id": "music-streaming-backend-collection",
+    "name": "Music Streaming Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "http://localhost:3000/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "auth", "register"]},
+            "body": {"mode": "raw", "raw": "{\n  \"username\": \"johndoe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"securePassword123\",\n  \"dob\": \"1990-01-01\",\n  \"country\": \"IN\"\n}"}
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "http://localhost:3000/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "auth", "login"]},
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"john@example.com\",\n  \"password\": \"securePassword123\"\n}"}
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Browse",
+      "item": [
+        {"name": "Featured", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/browse/featured", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "browse", "featured"]}}, "response": []},
+        {"name": "Categories", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/browse/categories", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "browse", "categories"]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Search",
+      "item": [
+        {"name": "Search All", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/search?q=pop&type=songs,artists,albums,playlists&limit=10", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "search"], "query": [{"key": "q", "value": "pop"}, {"key": "type", "value": "songs,artists,albums,playlists"}, {"key": "limit", "value": "10"}]}}, "response": []},
+        {"name": "Search Songs Only", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/search?q=pop&type=songs", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "search"], "query": [{"key": "q", "value": "pop"}, {"key": "type", "value": "songs"}]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Songs",
+      "item": [
+        {"name": "Get Song", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/songs/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "songs", "1"]}}, "response": []},
+        {"name": "Play Song", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}, {"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:3000/api/songs/1/play", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "songs", "1", "play"]}, "body": {"mode": "raw", "raw": "{\n  \"timestamp\": \"2024-03-20T10:30:00Z\",\n  \"duration\": 30\n}"}}, "response": []},
+        {"name": "Save Song", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/songs/1/save", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "songs", "1", "save"]}}, "response": []},
+        {"name": "Remove Song", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/songs/1/save", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "songs", "1", "save"]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Artists",
+      "item": [
+        {"name": "Get All Artists", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/artists", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "artists"]}}, "response": []},
+        {"name": "Get Artist", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/artists/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "artists", "1"]}}, "response": []},
+        {"name": "Follow Artist", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/artists/1/follow", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "artists", "1", "follow"]}}, "response": []},
+        {"name": "Unfollow Artist", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/artists/1/follow", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "artists", "1", "follow"]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Albums",
+      "item": [
+        {"name": "Get All Albums", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/albums", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "albums"]}}, "response": []},
+        {"name": "Get Album", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/albums/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "albums", "1"]}}, "response": []},
+        {"name": "Save Album", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/albums/1/save", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "albums", "1", "save"]}}, "response": []},
+        {"name": "Remove Album", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/albums/1/save", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "albums", "1", "save"]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Playlists",
+      "item": [
+        {"name": "Create Playlist", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}, {"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:3000/api/playlists/create", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "create"]}, "body": {"mode": "raw", "raw": "{\n  \"name\": \"My Playlist\",\n  \"description\": \"Best songs\",\n  \"public\": true,\n  \"image_url\": \"https://img.com/playlist.jpg\"\n}"}}, "response": []},
+        {"name": "Get User Playlists", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/playlists/user", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "user"]}}, "response": []},
+        {"name": "Get Playlist Details", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/playlists/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "1"]}}, "response": []},
+        {"name": "Update Playlist", "request": {"method": "PUT", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}, {"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:3000/api/playlists/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "1"]}, "body": {"mode": "raw", "raw": "{\n  \"name\": \"Updated Playlist\",\n  \"description\": \"Updated desc\",\n  \"public\": false,\n  \"image_url\": \"https://img.com/playlist2.jpg\"\n}"}}, "response": []},
+        {"name": "Delete Playlist", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/playlists/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "1"]}}, "response": []},
+        {"name": "Add Song to Playlist", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}, {"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:3000/api/playlists/1/tracks", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "1", "tracks"]}, "body": {"mode": "raw", "raw": "{\n  \"song_id\": 1,\n  \"position\": 1\n}"}}, "response": []},
+        {"name": "Remove Song from Playlist", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}, {"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:3000/api/playlists/1/tracks", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "1", "tracks"]}, "body": {"mode": "raw", "raw": "{\n  \"song_id\": 1\n}"}}, "response": []},
+        {"name": "Reorder Playlist", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}, {"key": "Content-Type", "value": "application/json"}], "url": {"raw": "http://localhost:3000/api/playlists/1/reorder", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "playlists", "1", "reorder"]}, "body": {"mode": "raw", "raw": "{\n  \"song_positions\": [{\"song_id\": 1, \"position\": 1}]\n}"}}, "response": []}
+      ]
+    },
+    {
+      "name": "Library",
+      "item": [
+        {"name": "Get Saved Songs", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/songs", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "songs"]}}, "response": []},
+        {"name": "Save Song", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/songs/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "songs", "1"]}}, "response": []},
+        {"name": "Remove Song", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/songs/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "songs", "1"]}}, "response": []},
+        {"name": "Get Saved Albums", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/albums", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "albums"]}}, "response": []},
+        {"name": "Save Album", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/albums/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "albums", "1"]}}, "response": []},
+        {"name": "Remove Album", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/albums/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "albums", "1"]}}, "response": []},
+        {"name": "Get Followed Artists", "request": {"method": "GET", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/artists", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "artists"]}}, "response": []},
+        {"name": "Follow Artist", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/artists/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "artists", "1"]}}, "response": []},
+        {"name": "Unfollow Artist", "request": {"method": "DELETE", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/library/artists/1", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "library", "artists", "1"]}}, "response": []}
+      ]
+    },
+    {
+      "name": "Subscription",
+      "item": [
+        {"name": "Get Plans", "request": {"method": "GET", "url": {"raw": "http://localhost:3000/api/subscription/plans", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "subscription", "plans"]}}, "response": []},
+        {"name": "Upgrade Subscription", "request": {"method": "POST", "header": [{"key": "Authorization", "value": "Bearer {{jwt}}"}], "url": {"raw": "http://localhost:3000/api/subscription/upgrade", "protocol": "http", "host": ["localhost"], "port": "3000", "path": ["api", "subscription", "upgrade"]}}, "response": []}
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "jwt",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    }
+  ]
+} 
